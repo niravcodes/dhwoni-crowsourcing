@@ -1,0 +1,17 @@
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px #ff000050;
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 #ff000050;
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
