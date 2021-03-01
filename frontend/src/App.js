@@ -3,6 +3,7 @@ import Admin from "./components/Admin";
 import AppBody from "./components/AppBody";
 import Player from "./components/Player";
 import Recorder from "./components/Recorder";
+import Listen from "./components/Listen"
 import Tabs from "./components/Tabs";
 import "./style.css";
 
@@ -22,7 +23,9 @@ function App() {
         {tab === 0 && <Recorder onLoading={(l) => setLoading(l)} />}
         {tab === 1 && <Player onLoading={(l) => setLoading(l)} />}
         {tab === 2 && <Admin onLoading={(l) => setLoading(l)} />}
+        {tab === 3 && <Listen onLoading={l => setLoading(l)} />}
       </AppBody>
+      <div style={{ textAlign: "center", marginTop: 30, fontSize: 16 }}><a href="https://niravko.com/">niravko</a></div>
     </div>
   );
 }

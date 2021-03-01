@@ -29,6 +29,14 @@ export default function Tabs({ tab, onTabChange }) {
           onTabChange(2);
         }}
       />
+      <IconButton
+        src="/microphonegood.svg"
+        style={style}
+        color={tab === 3 ? "active" : "normal"}
+        onClick={() => {
+          onTabChange(3);
+        }}
+      />
     </div>
   );
 }

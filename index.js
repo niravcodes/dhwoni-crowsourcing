@@ -138,11 +138,13 @@ app.post("/listen", async (req, res) => {
   var buf = Buffer.from(req.body.audio, "base64"); // decode
   await fs.writeFile(folderName + "/" + "voice.mp3", buf);
   let audioIn = folderName + "/" + "voice.mp3"
-  let audioIn = folderName + "/" + "voice.wav"
+  let audioOut = folderName + "/" + "voice.wav"
   let command = `sox ${audioIn} ${audioOut} rate 16000 remix 1`
+  await exec(command);
+  command = `python3 ../4ai/Main.py /home/azureuser/dhwoni-crowsourcing/${folderName}/voice.wav`;
   const { stdout, stderr } = await exec(command);
   console.log(stdout);
-  res.sendStatus(200);
+  res.json({ text: stdout });
 });
 
 app.use("/uploads1", express.static("uploads1"));
