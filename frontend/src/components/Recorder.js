@@ -3,7 +3,7 @@ import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 import RecordButtonArray from "./RecordButtonArray";
 import api from "../helpers/api.js";
 
-export default function Recorder({ onLoading = () => {} }) {
+export default function Recorder({ onLoading = () => { } }) {
   let [recording, setRecording] = useState(RecordState.NONE);
   let [recordedAudio, setRecordedAudio] = useState(null);
   let [sentence, setSentence] = useState(null);

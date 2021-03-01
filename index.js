@@ -8,6 +8,7 @@ const dirty = require("dirty");
 const port = 5000;
 app.use(cors());
 app.use(bodyParser.json({ limit: "8mb" }));
+
 let data = [
   "नेपालको ठुला ठुला मान्छेले देखेको कुराले सबैलाइ अचम्ममा पार्नसक्छ ।",
   "पृथ्वीको तेस्रो ध्रुवको रुपमा चिनिने हिमालय क्षेत्रको जैविक विविधताले भरिपूर्ण छ ।",
@@ -124,6 +125,23 @@ app.post("/record", async (req, res) => {
     }
     return [{ index: req.body.index, directory: folderName }];
   });
+  res.sendStatus(200);
+});
+
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
+app.post("/listen", async (req, res) => {
+  let folderName = "uploads2/" + randomstring.generate();
+  console.log("# Making random directory", folderName);
+  await fs.mkdir(folderName);
+  var buf = Buffer.from(req.body.audio, "base64"); // decode
+  await fs.writeFile(folderName + "/" + "voice.mp3", buf);
+  let audioIn = folderName + "/" + "voice.mp3"
+  let audioIn = folderName + "/" + "voice.wav"
+  let command = `sox ${audioIn} ${audioOut} rate 16000 remix 1`
+  const { stdout, stderr } = await exec(command);
+  console.log(stdout);
   res.sendStatus(200);
 });
 
