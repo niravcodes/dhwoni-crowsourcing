@@ -148,6 +148,7 @@ app.post("/listen", async (req, res) => {
 });
 
 app.use("/uploads1", express.static("uploads1"));
+express.static.mime.types['wasm'] = 'application/wasm';
 app.use("/", express.static("frontend/build"));
 
 db.on("load", () => {

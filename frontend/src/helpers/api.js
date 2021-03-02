@@ -1,6 +1,6 @@
 import axios from "axios";
 import blobToBase64 from "./blobToBase64";
-// const URL = "http://localhost:5000";
+// const URL = "https://localhost:5000";
 const URL = "https://www.dhwoni.com"
 
 async function uploadAudio(data) {
@@ -58,7 +58,7 @@ async function getRandomSample() {
 async function listen(data) {
   console.log("Listening")
   let b2b = await blobToBase64(data.audio);
-  data.audio = b2b.replace(/^data:audio\/(wav|mp3);base64,/, "");
+  data.audio = b2b.replace(/^data:audio\/(wav|mp3|mpeg);base64,/, "");
 
   try {
     let m = await axios.post(URL + "/listen", data);
