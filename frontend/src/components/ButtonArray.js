@@ -14,7 +14,7 @@ let modes = {
     rightBtn: "/check.svg",
   },
 };
-export default function ButtonArray({ children }) {
+export default function ButtonArray({ children, style }) {
   return (
     <div
       style={{
@@ -23,6 +23,7 @@ export default function ButtonArray({ children }) {
         alignItems: "center",
         width: "100%",
         margin: "0 auto",
+        ...style
       }}
     >
       {children}

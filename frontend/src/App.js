@@ -25,8 +25,10 @@ function App() {
         {tab === 2 && <Admin onLoading={(l) => setLoading(l)} />}
         {tab === 3 && <Listen onLoading={l => setLoading(l)} />}
       </AppBody>
-      <div style={{ textAlign: "center", marginTop: 30, fontSize: 16 }}><a href="https://niravko.com/">niravko</a></div>
-    </div>
+      <div style={{ textAlign: "center", marginTop: 30, fontSize: 16 }}>
+        Built by <a href="https://sammelan.netlify.com/">Sammelan</a>, <a href="https://sangamkhanal.com.np">Sangam</a>, <a href="https://sauhard.me/">Sauhard</a>, <a href="https://nirav.com.np/">Nirav</a>
+      </div >
+    </div >
   );
 }
 

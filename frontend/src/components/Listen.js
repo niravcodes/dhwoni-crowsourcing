@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 import AudioReactRecorder2 from "./RecordAudio"
-import RecordButtonArray from "./RecordButtonArray";
+import ListenButtonArray from "./ListenButtonArray";
 import api from "../helpers/api.js";
 
 export default function Recorder({ onLoading = () => { } }) {
@@ -15,6 +15,7 @@ export default function Recorder({ onLoading = () => { } }) {
             <AudioReactRecorder2
                 rec={recording}
                 onStop={async (x) => {
+                    setRecording(false)
                     console.log(x, "BLOB");
                     // if (audioplayer.current === null) return;
                     // let audio = audioplayer.current;
@@ -34,19 +35,12 @@ export default function Recorder({ onLoading = () => { } }) {
                 }}
             />
             <audio ref={audioplayer} />
-            <RecordButtonArray
+            <div style={{ marginBottom: 20 }}></div>
+            <ListenButtonArray
+                nudgeUpload={recording}
                 onRecord={(e) => {
-                    // if (recording === RecordState.NONE) setRecording(RecordState.START);
-                    // else if (recording === RecordState.START)
-                    //     setRecording(RecordState.STOP);
-                    // else if (recording === RecordState.STOP)
-                    //     setRecording(RecordState.START);
                     console.log(!recording ? "RECORDING" : "STOPPING")
                     if (recording) setRecording(false); else setRecording(true)
-                }}
-                onUpload={async (e) => {
-                }}
-                onReset={async (e) => {
                 }}
                 recording={recording}
             />

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react"
-// import m from "vmsg/vmsg.wasm"
 import vmsg from "vmsg"
 const recorder = new vmsg.Recorder({ wasmURL: "/static/vmsg.wasm" });
 
 export default function RecordAudio({ rec, onStop = () => { } }) {
     let [recording, setRecording] = useState(false)
+    let [time, setTime] = useState(false)
     // let mediaRecorder = useRef(null)
     // let chunks = useRef([])
 
@@ -16,16 +16,18 @@ export default function RecordAudio({ rec, onStop = () => { } }) {
                 await recorder.initWorker();
                 recorder.startRecording();
                 setRecording(true)
+                setTimeout(() => { setTime(true) }, 4000)
             }
-            else if (rec === false && recording === true) {
+            else if ((rec === false || time === true) && recording === true) {
                 console.log("ENDED")
                 let blob = await recorder.stopRecording();
                 console.log("Blob", blob)
                 setRecording(false)
                 onStop(blob)
+                setTime(false)
             }
         }
         m();
-    }, [rec])
+    }, [rec, time])
     return <div></div>
 }
